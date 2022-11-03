@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_form</title>
+</head>
+
+<body>
+    <div class="container" style="background-color: grey; max-width: 540px; margin: auto; text-align: center; border: 12px solid black;
+    border-radius: 10px; margin-top: 15px; margin-bottom: 15px;">
+
+        <form action="/myaction.php" name="myForm" onsubmit="return validateform()" method="post">
+            <h1>Javascript Form </h1>
+            <div class="formdesign" id="name">
+                First Name:<input type="text" name="fname" required><b><span class="formerror"
+                        style="color: red;"></span></b>
+
+                <div class="formdesign" id="lname" style="padding: 20px 0px 0px 0px;">
+                    Last Name:<input type="text" name="flname" required><b><span class="formerror"
+                            style="color: red;"></span></b>
+                </div>
+
+                <div class="formdesign" id="email" style="padding: 20px 0px 0px 0px; margin-left: 30px;">
+                    Email:<input type="email" name="femail" required><b><span class="formerror"
+                            style="color: red;"></span></b>
+                </div>
+
+                <div class="formdesign" id="pass" style="padding: 20px 0px 0px 0px ;">
+                    Password:<input type="password" name="fpass" required><b><span class="formerror"
+                            style="color: red;"></span></b>
+                </div>
+
+                <div class="formdesign" id="cpass" style="padding: 20px 0px 0px 0px; margin-right: 60px;">
+                    Confirm Password:<input type="password" name="fcpass" required><b><span class="formerror"
+                            style="color:red;"></span></b>
+                </div>
+
+                <div class="formdesign" id="phone" style="margin-left: 20px; padding: 20px 0px 0px 0px;">
+                    Phone:<input type="number" name="fphone" required><b><span class="formerror"
+                            style="color: red;"></span></b>
+                </div>
+
+                <div class="formdesign" id="fbutton" style="padding: 20px 0px 20px 0px">
+                    <input type="submit" value="Submit">
+                </div>
+
+        </form>
+
+    </div>
+</body>
+
+<script>
+    function seterror(id, error) {
+        //setting error id and calss name...
+        element = document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+    }
+    function validateform() {
+        var returnval = true;
+        //validation for first name..
+        var name = document.forms['myForm']["fname"].value;
+        if (name.length < 10) {
+            seterror("name", " *very short name");
+            returnval = false;
+        }
+        if (name.length == 0) {
+            seterror("name", " *field is empty");
+            returnval = false;
+        }
+        //validation for last name...
+        var lname = document.forms['myForm']["flname"].value;
+        if (lname.length < 5) {
+            seterror("lname", "*very short name");
+            returnval = false;
+        }
+        if (lname.length == 0) {
+            seterror("lname", "*field is empty");
+            returnval = false;
+        }
+
+        var phone = document.forms['myForm']["fphone"].value;
+        if (phone.length != 11) {
+            seterror("phone", "*No. should be of 11");
+            returnval = false;
+        }
+
+        var pass = document.forms['myForm']["fpass"].value;
+        if (pass.length < 6) {
+            seterror("pass", "too short!");
+            returnval = false;
+        }
+
+        var cpass = document.forms['myForm']["fcpass"].value;
+        if (pass != cpass) {
+            seterror("cpass", "Password not matched!S")
+        }
+
+
+
+
+
+
+
+
+
+
+
+        return returnval;
+    }
+</script>
+
+</html>
